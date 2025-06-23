@@ -4,7 +4,7 @@ import { SiX } from "react-icons/si";
 
 export default function Nav() {
   return (
-    <nav className="bg-[#1B1B1B] p-4">
+    <nav className="bg-[#1B1B1B] p-7">
       <div className="grid grid-cols-6">
         <div className="col-span-3 flex justify-start space-x-4">
           <Link href="/">

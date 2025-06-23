@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Contact() {
-    const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
@@ -17,7 +16,7 @@ export default function Contact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!name || !email || !mobile || !message) {
+        if (!email || !mobile || !message) {
             alert("Please fill out all fields.");
             return;
         }
@@ -33,11 +32,10 @@ export default function Contact() {
             return;
         }
 
-        const booked = JSON.parse(localStorage.getItem('bookers')) || [];
+        const booked = JSON.parse(localStorage.getItem('Portfolio')) || [];
         booked.push({ email, name, mobile, message });
-        localStorage.setItem('sponsors', JSON.stringify(booked));
+        localStorage.setItem('Contact', JSON.stringify(booked));
         localStorage.removeItem("totalPrice");
-        setName('');
         setMobile('');
         setEmail('');
         setMessage('');
@@ -53,11 +51,11 @@ export default function Contact() {
             </p>
             <form className="grid grid-cols-1 gap-4" onSubmit={handleSubmit}>
                 <div>
-                    <label className="block mb-2">Your Email</label>
+                    <label className="block mb-2">Email</label>
                     <input
                         type="email"
                         name="email"
-                        placeholder="email"
+                        placeholder="Please enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full"
@@ -65,11 +63,11 @@ export default function Contact() {
                 </div>
 
                 <div>
-                    <label className="block mb-2">Mobile Phone</label>
+                    <label className="block mb-2">Mobile</label>
                     <input
                         type="text"
                         name="mobile"
-                        placeholder="Mobile Phone (10 digits)"
+                        placeholder="Enter mobile"
                         value={mobile}
                         maxLength="10"
                         onChange={(e) => setMobile(e.target.value)}
@@ -81,7 +79,7 @@ export default function Contact() {
                     <label className="block mb-2">Message</label>
                     <textarea
                         name="message"
-                        placeholder="Your message"
+                        placeholder="Enter your message"
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         className="border border-gray-300 rounded-md p-2 w-full"
@@ -92,7 +90,7 @@ export default function Contact() {
                     type="submit"
                     className="bg-[#3F8E00] text-white font-bold py-2 rounded-md hover:bg-green-600 transition duration-300"
                 >
-                    Contact
+             Submit
                 </button>
             </form>
         </div>
